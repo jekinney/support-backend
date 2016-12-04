@@ -12,12 +12,12 @@
         <div class="modal-body">
           @include('users.partials.social_buttons')
           <div class="form-group">
-            <label for="reg-email" class="label-control">Email</label>
-            <input type="email" id="reg-email" name="reg-email" value="{{ old('reg-email') }}" class="form-control">
+            <label for="log_email" class="label-control">Email</label>
+            <input type="email" id="log_email" name="log_email" value="{{ old('log_email') }}" class="form-control">
           </div>
           <div class="form-group">
-            <label for="reg-password" class="label-control">Password</label>
-            <input type="password" id="reg-password" name="reg-password" class="form-control">
+            <label for="log_password" class="label-control">Password</label>
+            <input type="password" id="log_password" name="log_password" class="form-control">
           </div>
           <div class="form-group text-center">
             <div class="checkbox">

@@ -81,6 +81,10 @@ trait SocialQueries
 				auth()->loginUsingId($exists->user_id);
 			}
 		} else {
+			if($current = $this->where('email', $data['email'])->first()) {
+				$data = array_add($data, 'user_id', $current->user_id);
+				auth()->loginUsingId($current->user_id);
+			}
 			$exists = $this->create($data);
 		}
 		return $exists;

@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function setpasswordAttribute($password)
+    {
+        return $this->attributes['password'] = bcrypt($password);
+    }
+
     public function socials()
     {
         return $this->hasMany(Social::class);

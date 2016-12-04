@@ -9,7 +9,7 @@ Route::group(['namespace' => 'Site'], function() {
 
 	Route::group(['prefix' => 'auth', 'as' => 'auth.', 'namespace' => 'Users'], function() {
 		Route::post('login', ['as' => 'login', 'uses' => 'AuthController@login']);
-		Route::post('logout', ['as' => 'login', 'uses' => 'AuthController@destroy']);
+		Route::post('logout', ['as' => 'logout', 'uses' => 'AuthController@destroy']);
 	});
 
 	Route::group(['prefix' => 'social', 'as' => 'social.', 'namespace' => 'Users'], function() {
