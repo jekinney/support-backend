@@ -10,11 +10,7 @@
           <h4 class="modal-title text-center" id="login">Login</h4>
         </div>
         <div class="modal-body">
-          <div class="form-group text-center">
-            <a href="" class="btn btn-primary ">Facebook</a>
-            <a href="" class="btn btn-info">Github</a>
-            <a href="" class="btn btn-danger">Google</a>
-          </div>
+          @include('users.partials.social_buttons')
           <div class="form-group">
             <label for="reg-email" class="label-control">Email</label>
             <input type="email" id="reg-email" name="reg-email" value="{{ old('reg-email') }}" class="form-control">

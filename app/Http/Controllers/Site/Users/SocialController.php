@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site\Users;
 
 use Socialite;
 use App\Users\Models\Social;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SocialController extends Controller
@@ -16,10 +17,16 @@ class SocialController extends Controller
     public function handleProviderCallback($provider, Social $social)
     {
         $social = $social->handle(Socialite::driver($provider)->user(), $provider);
-
         if(auth()->check()) {
-            return redirect()->route('profile.edit', auth()->user());
+            return redirect('/');
         } 
-        return view('user.social.register', compact('social'));
+        return view('users.social.register', compact('social'));
+    }
+
+    public function create(Request $request, Social $social)
+    {
+        $social->registerUser($request);
+
+        return redirect('/');
     }
 }
