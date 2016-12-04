@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdminUser extends Migration
+class CreateSiteRoleUserPivot extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateAdminUser extends Migration
      */
     public function up()
     {
-        Schema::create('admin_user', function (Blueprint $table) {
-            $table->integer('admin_id')->index();
+        Schema::create('site_role_user', function (Blueprint $table) {
+            $table->integer('site_role_id')->index();
             $table->integer('user_id')->index();
         });
     }
@@ -26,6 +26,6 @@ class CreateAdminUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_user');
+        Schema::dropIfExists('site_role_user');
     }
 }

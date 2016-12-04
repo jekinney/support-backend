@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdminsTable extends Migration
+class CreateCompanyRolePermissionPivot extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('slug')->index();
-            $table->string('name');
-            $table->string('description');
-            $table->timestamps();
+        Schema::create('company_role_permission', function (Blueprint $table) {
+            $table->integer('company_role_id')->index();
+            $table->integer('company_permission_id')->index();
         });
     }
 
@@ -29,6 +26,6 @@ class CreateAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('company_role_permission');
     }
 }

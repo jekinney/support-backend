@@ -54,7 +54,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a role="button" data-toggle="modal" data-target="#loginModal">Login</a></li>
-                            <li><a role="button" data-toggle="modal" data-target="#registrationModal">Register</a></li>
+                            <li><a href="{{ route('register.create') }}">Register</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -84,10 +84,10 @@
             @yield('content')  
         </main>
         @include('users.partials.login')
-        @include('users.partials.registration')
     </div>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    @yield('script')
 </body>
 </html>

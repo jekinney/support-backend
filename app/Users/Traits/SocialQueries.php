@@ -26,53 +26,16 @@ trait SocialQueries
 	}
 	public function handle($social, $provider)
 	{
-		return $this->{$provider}($social);
-	}
-
-	protected function facebook($social)
-	{
-		$facebook = [
-			'provider' => 'facebook',
-			'provider_user_id' => $social->id,
-			'name' => $social->name,
-			'email' => $social->email,
-			'avatar_url' => $social->avatar,
-			'profile_url' => $social->profileUrl,
+		$data = [
+			'provider' => $provider,
+			'provider_user_id' => $social->getId(),
+			'name' => $social->getName(),
+			'email' => $social->getEmail(),
+			'avatar_url' => $social->getAvatar(),
 		];
-		return $this->updateOrCreate($facebook);
-	}
 
-	protected function github($social)
-	{
-		$user = $social->user;
-		$github = [
-			'provider' => 'github',
-			'provider_user_id' => $user['id'],
-			'name' => $user['login'],
-			'email' => $user['email'],
-			'avatar_url' => $user['avatar_url'],
-			'profile_url' => $user['url'],
-		];
-		return $this->updateOrCreate($github);
-	}
-
-	protected function google($social)
-	{
-		$google = [
-			'provider' => 'google',
-			'provider_user_id' => $social->id,
-			'name' => $social->name,
-			'email' => $social->email,
-			'avatar_url' => $social->avatar,
-			'profile_url' => $social->user['url'],
-		];
-		return $this->updateOrCreate($google);
-	}
-
-	protected function updateOrCreate(array $data)
-	{
-		$exists = $this->where('provider', $data['provider'])
-			->where('provider_user_id', $data['provider_user_id'])
+		$exists = $this->where('provider', $provider)
+			->where('provider_user_id', $social->getId())
 			->first();
 
 		if($exists) {
@@ -81,7 +44,7 @@ trait SocialQueries
 				auth()->loginUsingId($exists->user_id);
 			}
 		} else {
-			if($current = $this->where('email', $data['email'])->first()) {
+			if($current = $this->where('email', $social->getEmail())->first()) {
 				$data = array_add($data, 'user_id', $current->user_id);
 				auth()->loginUsingId($current->user_id);
 			}

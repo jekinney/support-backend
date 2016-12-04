@@ -4,7 +4,8 @@ Route::group(['namespace' => 'Site'], function() {
 	Route::get('/', ['as' => 'home', 'uses' => 'Pages\HomeController@index']);
 
 	Route::group(['prefix' => 'register', 'as' => 'register.', 'namespace' => 'Users'], function() {
-		Route::post('/', ['as' => 'create', 'uses' => 'RegistrationController@store']);
+		Route::get('/', ['as' => 'create', 'uses' => 'RegistrationController@create']);
+		Route::post('/', ['as' => 'store', 'uses' => 'RegistrationController@store']);
 	});
 
 	Route::group(['prefix' => 'auth', 'as' => 'auth.', 'namespace' => 'Users'], function() {

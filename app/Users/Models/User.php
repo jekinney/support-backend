@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'activated'
     ];
 
     /**
@@ -35,6 +35,11 @@ class User extends Authenticatable
     public function socials()
     {
         return $this->hasMany(Social::class);
+    }
+
+    public function companyInvited()
+    {
+        return $this->hasMany(\App\Companies\Models\Invite::class, 'sent_from_id', 'id');
     }
 
     public function companyOwner()
